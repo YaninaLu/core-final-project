@@ -26,8 +26,7 @@ class AddressBookField:
     def __contains__(self, needle):
         return True if needle in self.value else False
 
-    @staticmethod
-    def verify_value(value):
+    def verify_value(self, value):
         pass
 
     @property

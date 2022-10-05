@@ -82,7 +82,7 @@ class AssistantBot:
             if hasattr(handler, "data"):
                 handler.data.backup_data(handler)
 
-    def help(self):
+    def help(self) -> str:
         result = "To work with a bot type in:\n"
         for feature in self.features:
             for key, value in feature.command_handlers.items():
