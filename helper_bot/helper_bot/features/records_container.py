@@ -1,6 +1,7 @@
 import os.path
 import pickle
 from collections import UserDict
+from helper_bot.helper_bot.features.data_presentation import RecordsPresenter
 
 
 class RecordsContainer(UserDict):
@@ -11,6 +12,7 @@ class RecordsContainer(UserDict):
     def __init__(self, save_file):
         super().__init__()
         self.data = RecordsContainer.load_data(save_file) or {}
+        self.presenter = RecordsPresenter()
 
     @classmethod
     def load_data(cls, filepath: str) -> None | dict:
@@ -82,10 +84,7 @@ class RecordsContainer(UserDict):
         """
 
         if self.data:
-            result = ""
-            for record in self.data.values():
-                result += "\n" + str(record) + "\n"
-            return result
+            return self.presenter.show_data(self.data)
         else:
             return "You don't have any data yet."
 
